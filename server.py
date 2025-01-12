@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify
 from EmotionDetection import emotion_detector
 
@@ -18,5 +19,6 @@ def emotion_detector_route():
         return result_text
     return "No text provided for analysis", 400  # Return an error if no text is provided
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Get the port from the environment variables
+    app.run(host="0.0.0.0", port=port)        # Bind to 0.0.0.0 and the correct port
